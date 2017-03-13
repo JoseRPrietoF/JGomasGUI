@@ -1,3 +1,4 @@
+#By: Jose R. Prieto Fontcuberta
 from PyQt4 import QtCore, QtGui, uic, QtOpenGL
 
 import subprocess
@@ -122,7 +123,7 @@ class Comand(threading.Thread):
 
     def run(self):
         print("Llamando a %s" % self.comand.split())
-        p = subprocess.Popen(self.comand.split(), shell=True, cwd=self.cwd)
+        p = subprocess.Popen(self.comand.split(), shell=True, cwd=self.cwd,creationflags=subprocess.CREATE_NEW_CONSOLE)
         sts = os.waitpid(p.pid, 0)
 
 
