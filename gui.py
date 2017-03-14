@@ -71,7 +71,8 @@ class Ui_MainWindow(QMainWindow, Ui_MainWindow):
         managerString = "java -classpath lib\jade.jar;lib\jadeTools.jar;lib\Base64.jar;lib\http.jar;lib\iiop.jar;lib\\beangenerator.jar;lib\jgomas.jar;lib\jason.jar;lib\JasonJGomas.jar;classes;. jade.Boot -gui Manager:es.upv.dsic.gti_ia.jgomas.CManager({0},{1},{2},{3})".format(self.nAgentes,self.map,self.refresh,self.duracion)
         print(managerString)
         print(managerString.split())
-
+        self.managerOutput.clear()
+        self.managerOutput.insertPlainText(managerString)
         manager = Comand(self.cwd, managerString)
         manager.start()
 
@@ -106,7 +107,8 @@ class Ui_MainWindow(QMainWindow, Ui_MainWindow):
         print(agentsString)
 
         #agentsString += "\""
-
+        self.botsOutput.clear()
+        self.botsOutput.insertPlainText(agentsString)
         agents = Comand(self.cwd, agentsString)
         agents.start()
         #sys.exit(0)
