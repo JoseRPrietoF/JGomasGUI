@@ -74,7 +74,8 @@ class Ui_MainWindow(QMainWindow, Ui_MainWindow):
         self.managerOutput.clear()
         self.managerOutput.insertPlainText(managerString)
         manager = Comand(self.cwd, managerString)
-        manager.start()
+        if self.checkBoxManagerStart.isChecked():
+            manager.start()
 
     def startAgents(self):
         self.getData()
@@ -110,7 +111,8 @@ class Ui_MainWindow(QMainWindow, Ui_MainWindow):
         self.botsOutput.clear()
         self.botsOutput.insertPlainText(agentsString)
         agents = Comand(self.cwd, agentsString)
-        agents.start()
+        if self.checkBoxBotsStart.isChecked():
+            agents.start()
         #sys.exit(0)
 
 

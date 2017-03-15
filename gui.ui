@@ -255,7 +255,7 @@
      </font>
     </property>
     <property name="text">
-     <string>RUN Managers</string>
+     <string>RUN Bots</string>
     </property>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget_4">
@@ -386,6 +386,32 @@
     </property>
     <property name="plainText">
      <string/>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBoxManagerStart">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>350</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBoxBotsSstart">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>350</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
     </property>
    </widget>
   </widget>
