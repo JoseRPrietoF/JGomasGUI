@@ -8,7 +8,7 @@ executables = [
 
 
 setup(name="jgomas_gui",
-      version="0.1",
+      version="0.2",
       description="Interfaz grafica para lanzar agentes",
       executables=executables,
       )
