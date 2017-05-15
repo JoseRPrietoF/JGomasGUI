@@ -311,7 +311,7 @@
    <widget class="QPushButton" name="applyConfigs">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>60</x>
       <y>420</y>
       <width>111</width>
       <height>61</height>
@@ -412,6 +412,19 @@
     </property>
     <property name="text">
      <string>Start</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkLinux">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>350</y>
+      <width>94</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Linux</string>
     </property>
    </widget>
   </widget>

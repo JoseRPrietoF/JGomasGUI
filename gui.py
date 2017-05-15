@@ -4,7 +4,7 @@ from PyQt4 import QtCore, QtGui, uic, QtOpenGL
 import subprocess
 import os,sys,threading
 
-Ui_MainWindow, QMainWindow = uic.loadUiType("GUI.ui")
+Ui_MainWindow, QMainWindow = uic.loadUiType("gui.ui")
 subprocess.call(["ls", "-l"], shell=True)
 
 
@@ -55,7 +55,7 @@ class Ui_MainWindow(QMainWindow, Ui_MainWindow):
         self.axis_Fieldops = self.axisFieldops.value()
         self.axis_Medicos = self.axisMedicos.value()
         self.axis_Soldados = self.axisSoldados.value()
-
+#/home/jose/AIN/ain/bin/data/maps
     def getMaps(self):
         self.getData()
         print('ls {}'.format(self.maps_directory))
@@ -68,7 +68,11 @@ class Ui_MainWindow(QMainWindow, Ui_MainWindow):
 
     def startManager(self):
         self.getData()
-        managerString = "java -classpath lib\jade.jar;lib\jadeTools.jar;lib\Base64.jar;lib\http.jar;lib\iiop.jar;lib\\beangenerator.jar;lib\jgomas.jar;lib\jason.jar;lib\JasonJGomas.jar;classes;. jade.Boot -gui Manager:es.upv.dsic.gti_ia.jgomas.CManager({0},{1},{2},{3})".format(self.nAgentes,self.map,self.refresh,self.duracion)
+        if not self.checkLinux.isChecked(): #Windows
+            managerString = "java -classpath lib\jade.jar;lib\jadeTools.jar;lib\Base64.jar;lib\http.jar;lib\iiop.jar;lib\\beangenerator.jar;lib\jgomas.jar;lib\jason.jar;lib\JasonJGomas.jar;classes;. jade.Boot -gui Manager:es.upv.dsic.gti_ia.jgomas.CManager({0},{1},{2},{3})".format(self.nAgentes,self.map,self.refresh,self.duracion)
+        else: #Linux
+            managerString = "java -classpath \"lib/jade.jar:lib/jadeTools.jar:lib/Base64.jar:lib/http.jar:lib/iiop.jar:lib/beangenerator.jar:lib/jgomas.jar:lib/jason.jar:lib/JasonJGomas.jar:classes:.\" jade.Boot -gui -host 127.0.0.1 \"Manager:es.upv.dsic.gti_ia.jgomas.CManager({0},{1},{2},{3})\"".format(self.nAgentes,self.map,self.refresh,self.duracion)
+
         print(managerString)
         print(managerString.split())
         self.managerOutput.clear()
@@ -80,7 +84,10 @@ class Ui_MainWindow(QMainWindow, Ui_MainWindow):
     def startAgents(self):
         self.getData()
         print("Setting agents")
-        agentsString = "java -classpath lib\jade.jar;lib\jadeTools.jar;lib\Base64.jar;lib\http.jar;lib\iiop.jar;lib\beangenerator.jar;lib\jgomas.jar;student.jar;lib\jason.jar;lib\JasonJGomas.jar;classes;. jade.Boot -container -host localhost "
+        if not self.checkLinux.isChecked():  # Windows
+            agentsString = "java -classpath lib\jade.jar;lib\jadeTools.jar;lib\Base64.jar;lib\http.jar;lib\iiop.jar;lib\beangenerator.jar;lib\jgomas.jar;student.jar;lib\jason.jar;lib\JasonJGomas.jar;classes;. jade.Boot -container -host localhost "
+        else:  # Linux
+            agentsString = "java -classpath \"lib/jade.jar:lib/jadeTools.jar:lib/Base64.jar:lib/http.jar:lib/iiop.jar:lib/beangenerator.jar:lib/jgomas.jar:student.jar:lib/jason.jar:lib/JasonJGomas.jar:classes:.\" jade.Boot -container -host 127.0.0.1 \""
 
         #agentsString += "\""
 
@@ -105,6 +112,8 @@ class Ui_MainWindow(QMainWindow, Ui_MainWindow):
             ["AF{0}:es.upv.dsic.gti_ia.JasonJGomas.BasicTroopJasonArch(jasonAgent_ALLIED_FIELDOPS.asl);".format(i) for i
              in range(self.allied_Fieldops)])
         agentsString += AlliedMedics + AlliedSoldiers + AlliedFieldops
+        if self.checkLinux.isChecked():
+            agentsString +"\""
         print(agentsString)
 
         #agentsString += "\""
