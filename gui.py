@@ -113,7 +113,7 @@ class Ui_MainWindow(QMainWindow, Ui_MainWindow):
              in range(self.allied_Fieldops)])
         agentsString += AlliedMedics + AlliedSoldiers + AlliedFieldops
         if self.checkLinux.isChecked():
-            agentsString +"\""
+            agentsString +="\""
         print(agentsString)
 
         #agentsString += "\""
